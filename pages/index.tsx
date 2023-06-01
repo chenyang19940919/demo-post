@@ -6,7 +6,6 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import { useRouter } from "next/router";
-//import { getLayout } from "@/components/Layout";
 
 export default function Home() {
   const router = useRouter();
@@ -28,4 +27,3 @@ export default function Home() {
   );
 }
 
-//Home.getLayout = getLayout;
