@@ -9,7 +9,7 @@ interface HeadProps {
 const Head = ({ title, description, keywords }: HeadProps) => {
   return (
     <NextHead>
-      <title>{title} - PUI 51</title>
+      <title>{title} - demo post</title>
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords} />
     </NextHead>
