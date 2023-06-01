@@ -18,7 +18,7 @@ import { styled } from "@mui/material/styles";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import AddIcon from '@mui/icons-material/Add'
-import { menuData } from "@/data/sidebarMenuData";
+import ArticleIcon from '@mui/icons-material/Article';
 
 interface Props {
   width: number;
@@ -31,6 +31,16 @@ interface NestedListData {
   path: string;
   children?: NestedListData[];
 }
+
+const menuData = [
+  {
+    id: "1",
+    name: "文章",
+    icon: ArticleIcon,
+    path: "/posts",
+  },
+]
+
 
 const NestedList = styled(List)<{ component?: React.ElementType }>(
   ({ theme }) => ({
@@ -127,7 +137,7 @@ const Sidebar = ({ width }: Props) => {
             sx={{ cursor: "pointer" }}
             onClick={() => router.push("/")}
           >
-            PUI51 後台
+            Demo Post 後台
           </Typography>
         </Toolbar>
         {/* <Divider /> */}

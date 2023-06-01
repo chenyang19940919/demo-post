@@ -19,6 +19,7 @@ import SendIcon from "@mui/icons-material/Send";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useSnackbar } from "notistack";
+import { getSession } from "next-auth/react";
 
 const Editor = dynamic(() => import("@/components/Editor"), {
   ssr: false,
@@ -86,7 +87,7 @@ const EditPost = () => {
         enqueueSnackbar(status === 1 ? "發布成功" : "儲存成功", {
           variant: "success",
         });
-        router.push("/post");
+        router.push("/posts");
       }
     } catch (err) {
       enqueueSnackbar(status === 1 ? "發布失敗" : "儲存失敗", {
@@ -142,9 +143,9 @@ const EditPost = () => {
               select
               fullWidth
             >
-              <MenuItem value="1">日常</MenuItem>
-              <MenuItem value="2">環境</MenuItem>
-              <MenuItem value="3">疾病相關</MenuItem>
+              <MenuItem value="1">分類1</MenuItem>
+              <MenuItem value="2">分類2</MenuItem>
+              <MenuItem value="3">分類3</MenuItem>
             </TextField>
             <Box>
               <Typography variant="h6">
@@ -168,3 +169,21 @@ const EditPost = () => {
 export default EditPost;
 
 EditPost.getLayout = getLayout;
+
+export const getServerSideProps = async (ctx: any) => {
+  
+  const session = await getSession(ctx);
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/auth",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {},
+  };
+};

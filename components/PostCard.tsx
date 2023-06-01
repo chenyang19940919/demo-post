@@ -55,7 +55,7 @@ const PostCard = ({ data, onChangeStatus, onDelete }: PostCardProps) => {
         <ListItemText>
           <Stack sx={{ ml: 3 }} spacing={1}>
             <div>{data.title}</div>
-            <div>{data.category}</div>
+            <div>分類{data.category}</div>
             <div>
               {data.status === 1 ? (
                 <Chip label="已發布" color="success" />

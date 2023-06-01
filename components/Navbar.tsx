@@ -14,7 +14,7 @@ import {
   Tooltip,
   IconButton,
 } from "@mui/material";
-import Settings from "@mui/icons-material/Settings";
+
 import Logout from "@mui/icons-material/Logout";
 import { styled } from "@mui/material/styles";
 

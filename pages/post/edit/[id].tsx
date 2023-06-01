@@ -19,6 +19,7 @@ import SendIcon from "@mui/icons-material/Send";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useSnackbar } from "notistack";
+import { getSession } from "next-auth/react";
 
 const Editor = dynamic(() => import("@/components/Editor"), {
   ssr: false,
@@ -95,7 +96,7 @@ const EditPost = ({ data }: EditPostProps) => {
           enqueueSnackbar(status === 1 ? "發布成功" : "儲存成功", {
             variant: "success",
           });
-          router.push("/post");
+          router.push("/posts");
         }
       }
     } catch (err) {
@@ -180,6 +181,18 @@ export default EditPost;
 EditPost.getLayout = getLayout;
 
 export const getServerSideProps = async (ctx: any) => {
+  
+  const session = await getSession(ctx);
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/auth",
+        permanent: false,
+      },
+    };
+  }
+  
   const { params } = ctx;
 
   if (params?.id) {
@@ -190,6 +203,8 @@ export const getServerSideProps = async (ctx: any) => {
       props: { data: res.data },
     };
   }
+
+  
 
   return {
     props: {},
